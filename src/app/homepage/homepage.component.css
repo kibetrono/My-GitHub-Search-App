@@ -1,0 +1,6 @@
+.repoos{
+  border: 1px solid black;
+  padding: 30px;  
+  height: 800px;
+  overflow: auto;
+}

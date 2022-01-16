@@ -1,0 +1,34 @@
+<!-- <app-form-search (getName)="formMethod($event)"></app-form-search>
+
+
+<div class="users" >
+   
+    {{users.login}}
+</div> -->
+
+
+<form>
+    <div class="form-group">
+        <label>Enter Github Username:</label>
+        <input type="text" name="search" [(ngModel)]='username' (keyup)="findUser()">
+    </div>
+</form>
+
+
+<div class="card-header">
+    Username: {{user.login}}
+</div>
+
+
+<div class="display">
+    <ul class="list-group">
+        
+        <li class="list-group-item"><strong>Image: </strong> <img src="{{user.avatar_url}}" alt="GitHub Image"></li>
+        <li class="list-group-item"><strong>Following: </strong> {{user.following}}</li>
+        <li class="list-group-item"><strong>Email: </strong> {{user.email}}</li>
+        <li class="list-group-item"><strong>Location: </strong> {{user.location}}</li>
+        <li class="list-group-item"><strong>Repoos: </strong> {{user.public_repos}}</li>
+        <li class="list-group-item"><strong>Created: </strong> {{user.created_at }}</li>
+    </ul>
+
+</div>
