@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -10,11 +10,12 @@ import { User } from './user';
 export class SearchService {
   users!: User;
   githubusername:string="segem001";
+  repoName!: string;
+  srepoos: any;
 
   username!: string;
 
   constructor(private http:HttpClient) { 
-    // this.repository = new Repository('', '', '', new Date());
     this.users = new User('', '', '', 0, '', new Date(), 0, 0);
   }
 
@@ -46,17 +47,24 @@ export class SearchService {
 //Search User(END)
 
 
+
+
 //Search Repo
-UpdateUserRepo(username:string) {
-  this.username = username;
+
+findSearchRep(rname: any) {
+  let mise = new Promise<void>((resolve,) => {
+    this.http.get('https://api.github.com/users/' +
+    rname +'/repos?client_id='
+     +environment.gitApi
+      )
+      .toPromise().then((response:any) => {
+          this.srepoos= response;
+          resolve();
+        }
+      );
+  });
+  return mise;
 }
-
-getUserRepositories() {
-  // return this.http.get('https://api.github.com/users/' +this.githubusername +'/repos?client_id=' +environment.gitApi
-  return this.http.get("https://api.github.com/users/" + this.username + '/repos?client_id='  + "&client_secret=" );
-
-}
-
 //Search Repo(END)
 
 

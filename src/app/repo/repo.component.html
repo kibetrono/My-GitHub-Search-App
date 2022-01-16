@@ -1,13 +1,23 @@
-<form>
-    <div class="form-group">
-        <label>Enter Github Username:</label>
-        <input type="text" name="search" [(ngModel)]='username' (keyup)="findUser()">
-    </div>
-</form>
-<div class="displayRepositories" *ngFor="let repository of repositories">
+<div class="container-fluid">    
+       
+            
+                <form (ngSubmit)="Rep()"  #formInputs="ngForm">
 
-    <p>{{repository.name}}</p>
-    <p>Description: {{repository.description}}</p>
-    <p>Created on: {{repository.created_at}}</p>
-    
-</div>
+                    <input type="text" class="form-control" ngModel name="search" placeholder="Github username "><br>
+                    <button type="submit"  class="btn btn-warning">Search Repositories</button><br><br>
+
+                </form>         
+   
+    <div class="row" *ngIf="r">
+         <div  *ngFor="let repoos of fetchrrr; ">
+
+                    <h5> Description: {{ repoos.description }}</h5>
+
+
+        </div> 
+    </div>
+
+
+
+
+

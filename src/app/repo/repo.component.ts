@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Repository } from '../repository';
 import { SearchService } from '../search.service';
 
 @Component({
@@ -7,25 +9,27 @@ import { SearchService } from '../search.service';
   styleUrls: ['./repo.component.css']
 })
 export class RepoComponent implements OnInit {
-  repositories:any
-  username:string="segem001"
+  
+  fetchrrr!:any;
+    fetched!: string;
+    r = false;
 
   constructor(private myService:SearchService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {   
   }
 
+  @ViewChild('formInputs') searchRepoForm!: NgForm;
 
-  findUser () {
+  Rep() {
+    this.fetched = this.searchRepoForm.value.search;
     
-    this.myService.UpdateUserRepo(this.username);
+    this.myService.findSearchRep(this.fetched).then((response:any) => {
+        this.fetchrrr = this.myService.srepoos;
+        this.r = true;
+      }
+    );
 
-    this.myService.getUserRepositories().subscribe((userRepo:any) => {
-      console.log(userRepo);
-      
-      this.repositories = userRepo;
-    });
-
-  }
+    }
 
 }
